@@ -17,12 +17,13 @@ include_directories (${QDBUS_INCLUDE_DIRS} ${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DI
 
 set(katetabs_SRCS 
     katetabsplugin.cpp
+    katetabspluginconfigpage.cpp
     katetabbar.cpp
 )
 
 
 kde4_add_plugin(katetabsplugin ${katetabs_SRCS})
-target_link_libraries(katetabsplugin  ${KDE4_KDEUI_LIBS} kateinterfaces)
+target_link_libraries(katetabsplugin  ${KDE4_KDEUI_LIBS} ${KDE4_KPARTS_LIBS} kateinterfaces)
 
 install(TARGETS katetabsplugin  DESTINATION ${PLUGIN_INSTALL_DIR} )
 install(FILES katetabs-plugin.desktop  DESTINATION  ${SERVICES_INSTALL_DIR})

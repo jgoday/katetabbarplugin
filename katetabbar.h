@@ -23,21 +23,31 @@ class KateTabBar : public KTabBar
 {
     Q_OBJECT
 public:
+    enum Position {
+        Top = 1,
+        Bottom = 2
+    };
+
     KateTabBar(QWidget *parent = 0);
     ~KateTabBar();
 
     KTextEditor::Document *documentFromIndex(int index);
+    int shapeAsInt();
+    int position();
 
 public slots:
     void addDocument(KTextEditor::Document *document);
     void removeDocument(KTextEditor::Document *document);
     void activateDocument(KTextEditor::Document *document);
+    void setShapeAsInt(int shape);
+    void setPosition(int position);
 
 private slots:
-    void slotDocumentChangeName(KTextEditor::Document *document);
+    void slotDocumentChange(KTextEditor::Document *document);
 
 private:
     QMap <int, KTextEditor::Document *> m_documents;
     QMap <KTextEditor::Document *, int> m_keys;
+    int m_position;
 };
 #endif
